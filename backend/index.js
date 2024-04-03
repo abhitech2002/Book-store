@@ -10,17 +10,20 @@ const app = express()
 // Middleware for parsing router body
 app.use(express.json())
 
+
+app.use(cors())
+// Middleware for handling CORS policy
+
+// app.use(    
+//     cors({
+//         origin: 'http://localhost:5137', 
+//         methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//         allowedHeaders: ['Content-Type']
+//     })
+// )
+
 // Routes
 app.use('/books', bookRoute)
-
-// Middleware for handling CORS policy
-app.use(    
-    cors({
-        origin: 'http://localhost:3000', 
-        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-        allowedHeaders: ['Content-Type', 'Authorization']
-    })
-)
 
 // Mongoose for connecting to mongoDB Database
 mongoose
@@ -30,6 +33,8 @@ mongoose
         app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}/`))
     })
     .catch((error) => console.log(error))
+
+
 
 // Hello World Testing 
 app.get("/", (req, res) => {
