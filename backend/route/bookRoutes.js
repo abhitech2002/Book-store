@@ -48,9 +48,9 @@ router.get('/', async(req, res) => {
 //  get all books
 router.get('/:id', async(req, res) => {
     try {
-        const {id} = req.params
+        const { id } = req.params;
         const book = await Book.findById(id)
-        return res.status(200).send({book})
+        return res.status(200).json(book)
     } catch (error) {
         console.log(error)
         res.status(500).send({message: error.message})
